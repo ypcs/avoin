@@ -136,6 +136,21 @@ class DefaultScraper(object):
 
         return self._format_parse_result(parsed, callback=callback, format=format)
 
+def xpath_parser(content, *args, **kwargs):
+    if kwargs.has_key('xpath'):
+        xpath = kwargs['xpath']
+
+        doc = html.fromstring(content)
+        result = doc.xpath(xpath)
+
+        if len(result) > 0:
+            return result
+        else:
+            raise ScraperMissingElementError, 'No results with XPath %s' % xpath
+
+    else:
+        raise ValueError, 'XPath not specified'
+
 def html_title_parser(content, *args, **kwargs):
     """Parse page title from HTML source
 
@@ -149,10 +164,9 @@ def html_title_parser(content, *args, **kwargs):
     >>> html_title_parser('<head><title>Test</title><title>Test2</title></head>')
     'Test'
     """
-    doc = html.fromstring(content)
-    title = doc.xpath('/html/head/title/text()')
-    if len(title) == 0:
-        raise ScraperMissingElementError, 'Document doesnt have html/head/title'
+    kwargs['xpath'] = '/html/head/title/text()'
+    results = xpath_parser(content, *args, **kwargs)
+    if len(results) > 0:
+        return results[0]
     else:
-        return title[0]
-    return title
+        return None
