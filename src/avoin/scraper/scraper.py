@@ -36,10 +36,10 @@ class ScraperFetchError(Exception):
     """HTTP error"""
     pass
 
-class Scraper(object):
+class DefaultScraper(object):
     """Base class for building advanced web scraping apps
 
-    >>> s = Scraper()
+    >>> s = DefaultScraper()
     >>> s.parse(url='http://www.google.com/', parser=html_title_parser)
     'Google'
     """
@@ -111,7 +111,7 @@ class Scraper(object):
     def _limit_parse_result(self, parsed, *args, **kwargs):
         """Limit amount of results
         >>> from ypcspy.scraper.scraper import Scraper
-        >>> s = Scraper()
+        >>> s = DefaultScraper()
         >>> parsed = ['a','b','c','d','e']
         >>> s._limit_parse_result(parsed)
         ['a', 'b', 'c', 'd', 'e']
