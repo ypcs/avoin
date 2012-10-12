@@ -20,11 +20,10 @@ def add_unique_to_list(item, uniq_list):
 	>>> add_unique_to_list('test3', test_list)
 	True
 	'''
-	if not item in uniq_list:
-		uniq_list.append(item)
-		return True
-	else:
+	if item in uniq_list:
 		return False
+	uniq_list.append(item)
+	return True
 
 def _dict_to_csv(items):
 	raise NotImplementedError
