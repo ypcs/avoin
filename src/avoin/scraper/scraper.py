@@ -105,6 +105,8 @@ class DefaultScraper(object):
         else:
             if format == 'json':
                 return json.dumps(parsed, default=json_handler)
+            if format == 'text':
+                return '\n'.join(parsed)
             else:
                 return parsed
 
