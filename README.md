@@ -13,17 +13,17 @@ or latest HEAD via git:
     
 ## Using (via Python Shell)
 ```python
-    >>> from avoin.scraper.scraper import DefaultScraper, html_title_parser
-    >>> scraper = DefaultScraper()
-    >>> url = 'http://www.google.com/'
-    
-    >>> result = scraper.parse(url, parser=html_title_parser)
-    >>> print result
-    Google
-    
-    >>> result = scraper.parse(url, parser=html_title_parser, format='json')
-    >>> print result
-    "Google"
+>>> from avoin.scraper.scraper import DefaultScraper, html_title_parser
+>>> scraper = DefaultScraper()
+>>> url = 'http://www.google.com/'
+
+>>> result = scraper.parse(url, parser=html_title_parser)
+>>> print result
+Google
+
+>>> result = scraper.parse(url, parser=html_title_parser, format='json')
+>>> print result
+"Google"
 ```
 
 
