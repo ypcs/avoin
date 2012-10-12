@@ -1,0 +1,10 @@
+*.py[co]
+*~
+*.tmp
+*.sqlite
+RELEASE-VERSION
+MANIFEST
+dist
+build
+deb_dist
+avoin.egg-info
