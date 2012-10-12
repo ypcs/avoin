@@ -1,7 +1,22 @@
 # -*- coding: utf-8 -*-
-
+import os
 import json
 import csv
+import codecs
+
+DEFAULT_ENCODING = 'utf-8'
+
+def open(filename, mode):
+	filehandle = codecs.open(filename, mode, DEFAULT_ENCODING)
+	return filehandle
+
+def read(filename):
+	return open(filename, 'r').read()
+
+def write(filename, content):
+	with open(filename, 'w') as filehandle:
+		filehandle.write(content)
+	return True
 
 def add_unique_to_list(item, uniq_list):
 	'''Add only unique items to list
@@ -35,8 +50,6 @@ def _dict_to_csv(items):
 	# Expand headers w/ dict keys
 	for i in items:
 		add_unique_to_list(i, headers)
-
-
 
 def _dict_to_json(items):
 	return json.dumps(items)
