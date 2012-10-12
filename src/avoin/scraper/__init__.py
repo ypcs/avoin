@@ -3,6 +3,7 @@
 
 # (c) 2012 Ville Korhonen <ville@xd.fi>
 
+from scraper import *
 scrapers = []
 
 def register_scraper(scraper):
