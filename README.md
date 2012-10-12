@@ -12,6 +12,7 @@ or latest HEAD via git:
     pip install git+https://github.com/ypcs/avoin.git#egg=avoin
     
 ## Using (via Python Shell)
+```python
     >>> from avoin.scraper.scraper import DefaultScraper, html_title_parser
     >>> scraper = DefaultScraper()
     >>> url = 'http://www.google.com/'
@@ -23,7 +24,8 @@ or latest HEAD via git:
     >>> result = scraper.parse(url, parser=html_title_parser, format='json')
     >>> print result
     "Google"
-    
+```
+
 
 ## Using (via command line)
 Fetch all URLs from webpage as plaintext
