@@ -1,5 +1,5 @@
 # avoin
-Python code for data scraping
+Python code for data scraping  
 (c) 2012 Ville Korhonen (ville@xd.fi), GPLv3
 
 ## Installation
