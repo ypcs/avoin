@@ -1,8 +1,9 @@
 # -*- coding: utf-8 -*-
 
+__package_name = 'avoin'
+
 import os
-from distutils.core import setup
-#, find_packages
+from setuptools import setup, find_packages
 from version import get_git_version
 
 def read(filename):
@@ -10,17 +11,15 @@ def read(filename):
     if os.path.exists(f):
         return open(f).read()
 
-setup(name='avoin',
+setup(name=__package_name,
     version = get_git_version(),
-#    version='1.0a',
     description='Misc python tools',
     long_description=read('README.md'),
     author='Ville Korhonen',
     author_email='ville@xd.fi',
-    url='https://github.com/ypcs/avoin',
-    packages=['avoin'],
-#    packages=find_packages(),
-    package_dir={'avoin': 'src/avoin',},
+    url='https://github.com/ypcs/' + __package_name,
+    packages=find_packages('src'),
+    package_dir={'': 'src',},
     install_requires=[
         'requests',
         'requests_cache',
@@ -41,7 +40,7 @@ setup(name='avoin',
         ],
     entry_points={
         'console_scripts': [
-            'avoin = avoin.core:main',
+            'avoin = avoin.core:run',
         ],
     },
-    )
+)
