@@ -13,7 +13,7 @@ import requests_cache
 
 import json
 
-from lxml import html
+#from lxml import html
 
 CACHE_DEFAULT_NAME = "avoin"
 CACHE_DEFAULT_TIMEOUT = 600 # 600 seconds, ie. 10 minutes
@@ -139,6 +139,7 @@ class DefaultScraper(object):
         return self._format_parse_result(parsed, callback=callback, format=format)
 
 def xpath_parser(content, *args, **kwargs):
+    raise NotImplementedError
     if kwargs.has_key('xpath'):
         xpath = kwargs['xpath']
 
