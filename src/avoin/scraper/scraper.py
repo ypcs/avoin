@@ -8,16 +8,39 @@
 # TODO: Rate-limiting
 # TODO: Queues
 
+import hashlib
+import json
+
 import requests
 import requests_cache
 
-import json
+from ..data.db import Database
 
 #from lxml import html
 
 CACHE_DEFAULT_NAME = "avoin"
 CACHE_DEFAULT_TIMEOUT = 600 # 600 seconds, ie. 10 minutes
 HTTP_DEFAULT_METHOD = 'GET'
+
+class Content(object):
+    def __init__(self):
+        self._content = None
+
+    @property
+    def content(self):
+        return self._content
+    
+    @content.setter
+    def content(self, value):
+        self._content = value
+
+    @content.deleter
+    def content(self):
+        self._content = None
+
+    @property
+    def checksum(self):
+        return hashlib.sha256(self.content).hexdigest()
 
 def json_handler(obj):
     """Handle unknown formats when converting python objects to json"""
