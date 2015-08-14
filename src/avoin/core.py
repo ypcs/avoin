@@ -4,8 +4,8 @@
 import sys
 import argparse
 
-from avoin.scraper.scraper import DefaultScraper, xpath_parser, ScraperMissingElementError
-from avoin.data.utils import read, write
+from .scraper.scraper import DefaultScraper, xpath_parser, ScraperMissingElementError
+from .data.utils import read, write
 
 def main(args):
     if args.command == 'xpath':
