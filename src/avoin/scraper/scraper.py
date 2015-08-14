@@ -10,6 +10,7 @@
 
 import hashlib
 import json
+import logging
 
 import requests
 import requests_cache
@@ -23,7 +24,7 @@ CACHE_DEFAULT_TIMEOUT = 600 # 600 seconds, ie. 10 minutes
 HTTP_DEFAULT_METHOD = 'GET'
 
 class Content(object):
-    def __init__(self):
+    def __init__(self, identifier, database=None):
         self._content = None
 
     @property
@@ -68,6 +69,7 @@ class DefaultScraper(object):
     """
     name = 'DefaultScraper'
     def __init__(self, name=CACHE_DEFAULT_NAME, *args, **kwargs):
+	self.logger = kwargs.get('logger', logging.getLogger(__name__))
         self._name = name
         self._stats = {
             'fetched': 0,
@@ -78,6 +80,7 @@ class DefaultScraper(object):
         else:
             cache_time = CACHE_DEFAULT_TIMEOUT / 60
         requests_cache.configure(self._name, expire_after=cache_time)
+	self.logger.debug('Initialized <DefaultScraper: %s>', self._name)
 
     def _fetch(self, url, method='GET', *args, **kwargs):
         """Execute actual HTTP query using requests library"""
@@ -108,18 +111,22 @@ class DefaultScraper(object):
 
     def add_queue(self, url):
         """Add job to queue"""
+	self.logger.debug('Add URL to queue: %s', url)
         raise NotImplementedError
 
     def process_queue(self):
         """Start processing queue"""
+	self.logger.debug('Start processing queue')
         raise NotImplementedError
 
     def get(self, url, *args, **kwargs):
         """Fetch given URL using HTTP GET"""
+	self.logger.debug('GET: %s', url)
         return self._fetch(url, method='get', *args, **kwargs)
 
     def post(self, url, *args, **kwargs):
         """Fetch given URL using HTTP POST"""
+	self.logger.debug('POST: %s', url)
         return self._fetch(url, method='post', *args, **kwargs)
 
     def _format_parse_result(self, parsed, callback=None, format=None):
