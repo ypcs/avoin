@@ -23,7 +23,6 @@ setup(name=__package_name,
     install_requires=[
         'requests',
         'requests_cache',
-        'lxml',
         'pymongo',
     ],
     license='GPLv3',
