@@ -24,6 +24,7 @@ setup(name=__package_name,
         'requests',
         'requests_cache',
         'lxml',
+        'pymongo',
     ],
     license='GPLv3',
     classifiers=[
