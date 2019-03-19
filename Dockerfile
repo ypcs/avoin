@@ -5,7 +5,8 @@ RUN /usr/lib/docker-helpers/apt-setup && \
     apt-get --assume-yes install \
         python3 \
         python3-pip \
-        python3-virtualenv && \
+        python3-virtualenv \
+        virtualenv && \
     /usr/lib/docker-helpers/apt-cleanup
 
 RUN adduser --disabled-password --gecos "user,,," user
