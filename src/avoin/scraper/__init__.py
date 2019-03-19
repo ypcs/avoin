@@ -6,8 +6,10 @@
 from scraper import *
 scrapers = []
 
+
 def register_scraper(scraper):
     scrapers.append(scraper)
+
 
 def list_scrapers():
     return [x.name for x in scrapers]

@@ -31,9 +31,12 @@
 #
 #   include RELEASE-VERSION
 
-__all__ = ("get_git_version")
 
+from __future__ import print_function
 from subprocess import Popen, PIPE
+
+
+__all__ = ("get_git_version")
 
 
 def call_git_describe(abbrev=4):
@@ -101,4 +104,4 @@ def get_git_version(abbrev=4):
 
 
 if __name__ == "__main__":
-    print get_git_version()
+    print(get_git_version())

@@ -15,9 +15,11 @@ import json
 
 from lxml import html
 
+
 CACHE_DEFAULT_NAME = "avoin"
 CACHE_DEFAULT_TIMEOUT = 600 # 600 seconds, ie. 10 minutes
 HTTP_DEFAULT_METHOD = 'GET'
+
 
 def json_handler(obj):
     """Handle unknown formats when converting python objects to json"""
@@ -28,13 +30,16 @@ def json_handler(obj):
         raise TypeError, "".join(['Object of type %s with value of ',
             '%s is not JSON serializable']) % (type(obj), repr(obj))
 
+
 class ScraperMissingElementError(Exception):
     """HTML elements missing"""
     pass
 
+
 class ScraperFetchError(Exception):
     """HTTP error"""
     pass
+
 
 class DefaultScraper(object):
     """Base class for building advanced web scraping apps
@@ -138,6 +143,7 @@ class DefaultScraper(object):
 
         return self._format_parse_result(parsed, callback=callback, format=format)
 
+
 def xpath_parser(content, *args, **kwargs):
     if kwargs.has_key('xpath'):
         xpath = kwargs['xpath']
@@ -152,6 +158,7 @@ def xpath_parser(content, *args, **kwargs):
 
     else:
         raise ValueError, 'XPath not specified'
+
 
 def html_title_parser(content, *args, **kwargs):
     """Parse page title from HTML source
